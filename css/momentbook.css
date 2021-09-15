@@ -1,0 +1,363 @@
+/* TODO: Integrate fonts */
+
+/*
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 100;
+    src: url('../fonts/NotoSansTC-Regular.otf');
+}
+*/
+
+@media screen {
+    :root {
+        --PANEL_HEIGHT: 550px;
+        --SUB_PANEL_HEIGHT: 110px;
+        --FONT_SIZE: 30px;
+        --EDITOR_WIDTH: 140px;
+        --SNAPSHOT_HEIGHT: 180px;
+        --SNAPSHOT_WIDTH: 320px;
+    }
+}
+
+/* Single Monitor Layout - Full HD*/
+
+@media screen and (min-width: 1900px) {
+    :root {
+        --PANEL_HEIGHT: 570px;
+        --SUB_PANEL_HEIGHT: 20px;
+        --CONTROL_PANEL_WIDTH: 256px;
+        --FONT_SIZE: 12px;
+        --EDITOR_WIDTH: 120px;
+        --SNAPSHOT_HEIGHT: 90px;
+        --SNAPSHOT_WIDTH: 160px;
+        --PANEL_WIDTH: 1900px;
+        --RECT_BUTTON_WIDTH: 60px;
+        --TD_ID: 20px;
+        --TD_NAME: 90px;
+        --TD_TAG: 180px;
+    }
+}
+
+/* Single Monitor Layout - 4K */
+
+@media screen and (min-width: 3800px) {
+    :root {
+        --PANEL_HEIGHT: 1080px;
+        --SUB_PANEL_HEIGHT: 40px;
+        --CONTROL_PANEL_WIDTH: 512px;
+        --FONT_SIZE: 24px;
+        --EDITOR_WIDTH: 240px;
+        --SNAPSHOT_HEIGHT: 180px;
+        --SNAPSHOT_WIDTH: 320px;
+        --PANEL_WIDTH: 3800px;
+        --RECT_BUTTON_WIDTH: 120px;
+        --TD_ID: 40px;
+        --TD_NAME: 180px;
+        --TD_TAG: 360px;
+    }
+}
+
+:root {
+    --COLOR_0: rgb(30, 30, 30);
+    --COLOR_1: rgb(51, 51, 51);
+    --COLOR_2: rgb(133, 133, 133);
+    --COLOR_3: rgb(204, 204, 204);
+    --COLOR_4: rgb(255, 255, 255);
+    --COLOR_H: rgb(0, 122, 204);
+}
+
+#UpperPanel {
+    position: fixed;
+    top: 0px;
+    height: var(--PANEL_HEIGHT);
+    width: 100%;
+    background-color: var(--COLOR_1);
+    z-index: 9;
+}
+
+#ContentPanel {
+    margin-top: calc(var(--PANEL_HEIGHT) + var(--SUB_PANEL_HEIGHT)*2);
+    background-color: var(--COLOR_0);
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.VideoControllerClass {
+    position: absolute;
+    width: calc(var(--PANEL_HEIGHT)/9*16);
+    height: var(--PANEL_HEIGHT);
+    margin-left: calc(0px - var(--PANEL_HEIGHT)/9*8);
+    left: 50%;
+}
+
+.ControlPanelClass {
+    display: none;
+    position: absolute;
+    border-color: var(--COLOR_2);
+    width: var(--CONTROL_PANEL_WIDTH);
+    margin-left: calc(var(--PANEL_HEIGHT)/9*8);
+    top: 0px;
+    left: 50%;
+}
+
+.RectButton {
+    -webkit-appearance: none;
+    width: var(--RECT_BUTTON_WIDTH);
+    height: calc(var(--FONT_SIZE*1.5));
+    background-color: var(--COLOR_1);
+    border: 1px solid;
+    border-color: var(--COLOR_2);
+    color: var(--COLOR_2);
+    font-size: var(--FONT_SIZE);
+    margin: 3px;
+}
+
+.RoundButton {
+    display: inline;
+    -webkit-appearance: none;
+    height: calc(var(--FONT_SIZE)*1.5);
+    width: calc(var(--FONT_SIZE)*1.5);
+    border: 1px solid;
+    border-color: var(--COLOR_2);
+    color: var(--COLOR_2);
+    background-color: var(--COLOR_0);
+    font-size: var(--FONT_SIZE);
+    padding: 0px;
+    margin: 0px;
+    border-radius: 50%;
+}
+
+.CueButton1, .CueButton2, .DelButton, .ListViewPickButton {
+    -webkit-appearance: none;
+    height: calc(var(--FONT_SIZE)*1.5);
+    width: calc(var(--FONT_SIZE)*1.5);
+    border: 1px solid;
+    border-color: var(--COLOR_2);
+    color: var(--COLOR_2);
+    background-color: var(--COLOR_0);
+    font-size: var(--FONT_SIZE);
+    padding: 0px;
+    margin: 0px;
+    border-radius: 50%;
+}
+
+.RectButton:hover, .RoundButton:hover, .CueButton1:hover, .CueButton2:hover, .DelButton:hover, .ListViewPickButton:hover {
+    border-color: var(--COLOR_3);
+    color: var(--COLOR_3);
+}
+
+.SnapButton, .SnapDeleteButton, .SnapCropButton, .PickButton {
+    -webkit-appearance: none;
+    position: absolute;
+    right: 0px;
+    height: calc(var(--FONT_SIZE)*1.5);
+    width: calc(var(--FONT_SIZE)*1.5);
+    background-color: rgba(51, 51, 51, 0);
+    text-shadow: var(--COLOR_0) 1px 1px 1px;
+    box-shadow: var(--COLOR_0) 1px 1px 1px;
+    border: 1px solid;
+    border-color: var(--COLOR_3);
+    color: var(--COLOR_3);
+    font-size: var(--FONT_SIZE);
+    padding: 0px;
+    margin: 0px;
+    border-radius: 50%;
+}
+
+.SnapButton {
+    top: 0px;
+}
+
+.SnapDeleteButton {
+    top: calc(var(--FONT_SIZE)*1.5);
+}
+
+.SnapCropButton {
+    top: calc(var(--FONT_SIZE)*3);
+}
+
+.PickButton {
+    top: calc(var(--FONT_SIZE)*4.5);
+}
+
+.SnapButton:hover, .SnapDeleteButton:hover, .SnapCropButton:hover, .PickButton:hover {
+    border-color: var(--COLOR_4);
+    color: var(--COLOR_4);
+}
+
+.MetaInput {
+    height: calc(var(--FONT_SIZE*1.5));
+    width: var(--EDITOR_WIDTH);
+    font-size: var(--FONT_SIZE);
+    border: 1px solid;
+    border-color: var(--COLOR_2);
+    color: var(--COLOR_3);
+    background-color: var(--COLOR_1);
+    margin: 3px;
+}
+
+.MetaTextarea {
+    height: calc(var(--FONT_SIZE)*8);
+    width: var(--CONTROL_PANEL_WIDTH);
+    font-size: var(--FONT_SIZE);
+    border: 1px solid;
+    border-color: var(--COLOR_2);
+    color: var(--COLOR_3);
+    background-color: var(--COLOR_1);
+    margin: 0px;
+    padding: 0px;
+}
+
+.VideoItem {
+    width: var(--VIDEO_ITEM_WIDTH);
+    height: var(--SNAPSHOT_HEIGHT);
+    top: 0px;
+    display: flex;
+    flex-flow: row;
+    color: var(--COLOR_2);
+    font-family: ‘Noto Sans TC’, sans-serif;
+    font-size: var(--FONT_SIZE);
+}
+
+.TDId {
+    width: var(--TD_ID);
+    height: var(--SNAPSHOT_HEIGHT);
+    text-align: center;
+    border: 1px solid var(--COLOR_2);
+}
+
+.TDName {
+    width: var(--TD_NAME);
+    height: var(--SNAPSHOT_HEIGHT);
+    text-align: left;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    border: 1px solid var(--COLOR_2);
+}
+
+.TDTag {
+    width: var(--TD_TAG);
+    height: var(--SNAPSHOT_HEIGHT);
+    text-align: left;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    border: 1px solid var(--COLOR_2);
+}
+
+.SnapshotContainer {
+    position: relative;
+    height: var(--SNAPSHOT_HEIGHT);
+    width: var(--SNAPSHOT_WIDTH);
+    border: 1px solid;
+    border-color: var(--COLOR_2);
+}
+
+.Snapshot {
+    max-height: var(--SNAPSHOT_HEIGHT);
+    max-width: var(--SNAPSHOT_WIDTH);
+}
+
+.TextBox {
+    color: var(--COLOR_2);
+    font-family: ‘Noto Sans TC’, sans-serif;
+    font-size: var(--FONT_SIZE);
+}
+
+.Timecode {
+    position: absolute;
+    color: var(--COLOR_3);
+    font-family: ‘Noto Sans TC’, sans-serif;
+    font-size: var(--FONT_SIZE);
+    text-shadow: var(--COLOR_0) 1px 1px 1px;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+}
+
+a:link, a:visited {
+    color: var(--COLOR_3);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--COLOR_4);
+    text-decoration: none;
+}
+
+#Info {
+    position: absolute;
+    height: cal(var(--FONT_SIZE)*2);
+    font-family: ‘Noto Sans TC’, sans-serif;
+    font-size: cal(var(--FONT_SIZE)/2);
+    top: 100px;
+    left: 100px;
+    display: none;
+    background: white;
+    padding: 3px;
+    z-index: 99;
+}
+
+#Seekbar {
+    position: fixed;
+    display: none;
+    top: var(--PANEL_HEIGHT);
+    height: var(--SUB_PANEL_HEIGHT);
+    width: 100%;
+    background-color: var(--COLOR_0);
+    cursor: pointer;
+    z-index: 9;
+}
+
+#Seekbar span {
+    background-color: var(--COLOR_H);
+    position: fixed;
+    top: 0;
+    left: 0;
+    top: var(--PANEL_HEIGHT);
+    height: var(--SUB_PANEL_HEIGHT);
+    width: 0px;
+    font-family: ‘Noto Sans TC’, sans-serif;
+    font-size: var(--FONT_SIZE);
+    color: var(--COLOR_4);
+    z-index: 99;
+}
+
+#SearchBar {
+    position: fixed;
+    top: calc(var(--SUB_PANEL_HEIGHT) + var(--PANEL_HEIGHT));
+    height: var(--SUB_PANEL_HEIGHT);
+    width: 100%;
+    background-color: var(--COLOR_0);
+    z-index: 9;
+}
+
+#ControlPanel2, #VideoControllerPanel2, .CueButton2 {
+    display: none;
+}
+
+#CropPanel {
+    display: none;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--COLOR_1);
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+}
+
+#ListViewButton {
+    display: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--COLOR_0);
+}

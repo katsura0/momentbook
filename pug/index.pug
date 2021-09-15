@@ -1,0 +1,86 @@
+head
+    meta(charset="utf-8")
+    style
+        include ../css/momentbook.css
+        include ../css/croppie.css
+
+body
+    #UpperPanel
+        video.VideoControllerClass#VideoController(playsinline preload="auto" )
+            source( type="video/mp4")
+        .ControlPanelClass#ControlPanel
+            .VideoSeekPanelClass#VideoSeekPanel
+                input.RectButton(type="button" value="-5 M" onclick="VideoSeekStep(1, -300)")
+                input.RectButton(type="button" value="+5 M" onclick="VideoSeekStep(1, +300)")
+                br
+                input.RectButton(type="button" value="-1 M" onclick="VideoSeekStep(1, -60)")
+                input.RectButton(type="button" value="+1 M" onclick="VideoSeekStep(1, +60)")
+                br
+                input.RectButton(type="button" value="-30 M" onclick="VideoSeekStep(1, -30)")
+                input.RectButton(type="button" value="+30 M" onclick="VideoSeekStep(1, +30)")
+                br
+                input.RectButton(type="button" value="-10 S" onclick="VideoSeekStep(1, -10)")
+                input.RectButton(type="button" value="+10 S" onclick="VideoSeekStep(1, +10)")
+                br
+                input.RectButton(type="button" value="-5 S" onclick="VideoSeekStep(1, -5)")
+                input.RectButton(type="button" value="+5 S" onclick="VideoSeekStep(1, +5)")
+                br
+                input.RectButton(type="button" value="-1 S" onclick="VideoSeekStep(1, -1)")
+                input.RectButton(type="button" value="+1 S" onclick="VideoSeekStep(1, +1)")
+                br
+                input.RectButton(type="button" value="-1 F" onclick="VideoSeekStep(1, -0.0333)")
+                input.RectButton(type="button" value="+1 F" onclick="VideoSeekStep(1, +0.0333)")
+                br
+                input.RectButton(type="button" value="1x" onclick="VideoSpeed(1, 1.0)")
+                input.RectButton(type="button" value="2x" onclick="VideoSpeed(1, 2.0)")
+                input.RectButton(type="button" value="4x" onclick="VideoSpeed(1, 4.0)")
+                input.RectButton(type="button" value="8x" onclick="VideoSpeed(1, 8.0)")
+                br
+                input.RectButton#PlayButton(type="button" value="Play" onclick="Play()")
+                input.RectButton#MuteButton(type="button" value="Mute" onclick="Mute()")
+                br
+                input.RectButton#PlayButton(type="button" value="Vol+" onclick="Volume(1)")
+                input.RectButton#MuteButton(type="button" value="Vol-" onclick="Volume(0)")
+                br
+                input.RectButton#VideoPickButton(type="button" value="Delete" onclick="VideoDeleteButtonHandler('')")
+                input.RectButton#VideoPickButton(type="button" value="Pick" onclick="VideoPickButtonHandler('')")
+                input.RectButton#SnapshotButton(type="button" value="Snapshot" onclick="SnapshotButtonHandler('','')")
+                br
+                .TextBox
+                    #MediaInfo
+                    | Rank
+                    br
+                    input.MetaInput#RankInput(type="text")
+                    br
+                    | Name
+                    br
+                    input.MetaInput#NameInput(type="text")
+                    br
+                    | Tag
+                    br
+                    textarea.MetaTextarea#TagInput
+                    br
+                    input.RectButton#MetaSaveButton(type="button" value="Save" onclick="MetadataSaveButtonHandler()")
+                //.MetaPanelClass#MetaPanel
+    #Seekbar
+        span#Progress
+    #SearchBar
+        input.RoundButton#SortButton0(type="button" value="-" onmousemove="ShowInfo('Sort by ID')" onclick="SortButtonHandler(0)" )
+        input.MetaInput(type="text" onkeyup="" placeholder="ID")
+        input.RoundButton#SortButton1(type="button" value="-" onmousemove="ShowInfo('Sort by level')" onclick="SortButtonHandler(1)")
+        input.MetaInput(type="text" id="SearchRankInput" onkeyup="Query(this.value, 2)" placeholder="Lv")
+        input.RoundButton#SortButton2(type="button" value="-" onmousemove="ShowInfo('Sort by name')" onclick="SortButtonHandler(2)" )
+        input.MetaInput(type="text" id="SearchNameInput" onkeyup="Query(this.value, 3)" placeholder="Name")
+        input.RoundButton#SortButton3(type="button" value="-" onmousemove="" onclick="")
+        input.MetaInput(type="text" id="SearchTagInput" onkeyup="Query(this.value, 4)" placeholder="Tag")
+        input.RoundButton#ListViewButton(type="button" value="L" onmousemove="ShowInfo('List view')" onclick="RefreshView(100)")
+        input.RoundButton#NameViewButton(type="button" value="N" onmousemove="ShowInfo('List view')" onclick="RefreshView(11)")
+    #ContentPanel
+    #CropPanel
+        #CropWindow
+        input.RectButton(type="button" onclick="SnapshotCropRotate(90)" value="Rotate-")
+        input.RectButton(type="button" onclick="SnapshotCropperHandler('','',0)" value="Save")
+        input.RectButton(type="button" onclick="SnapshotCropRotate(-90)" value="Rotate+")
+    script(src="js/croppie.min.js")
+    script(src="js/memorybook.min.js")
+    #Info
